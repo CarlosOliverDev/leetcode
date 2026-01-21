@@ -32,29 +32,29 @@ Only one valid answer exists.
  */
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 
-public class TwoSum {
+public class TwoSumOptimized {
     public static void main(String[] args) {
         int[] input = new int[]{2,7,11,15};
         int target = 9;
 
-        TwoSum solucao = new TwoSum();
+        TwoSumOptimized solucao = new TwoSumOptimized();
         int[] resultado = solucao.twoSum(input, target);
 
         System.out.println("Resultado: " + Arrays.toString(resultado));
-
     }
 
     public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> hashMap = new HashMap<>();
         for(int i = 0; i < nums.length; i++) {
-            for(int j = i+1; j < nums.length; j++) {
-                if(nums[i] + nums[j] == target) {
-                    int[] array = new int[2];
-                    array[0] = i;
-                    array[1] = j;
-                    return array;
-                }
+            int numero = nums[i];
+            int numeroASerBuscado = target - numero;
+            if(hashMap.containsKey(numeroASerBuscado)) {
+                return new int[] {hashMap.get(numeroASerBuscado), i};
             }
+            hashMap.put(numero, i);
         }
         throw new IllegalArgumentException("Não tem solução");
     }
