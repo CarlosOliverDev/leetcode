@@ -28,7 +28,7 @@ Constraints:
 
 public class PalindromeNumber {
     public static void main(String[] args) {
-        int x = -121;
+        int x = 121;
 
         PalindromeNumber solucao = new PalindromeNumber();
         boolean resposta = solucao.isPalindrome(x);
@@ -41,23 +41,15 @@ public class PalindromeNumber {
             return false;
         }
 
-        int tamanho = String.valueOf(Math.abs(x)).length();
-        String[] vetor = new String[tamanho];
-        for(int i = tamanho-1; i >= 0; i--) {
-            vetor[i] = String.valueOf(x % 10);
-            x /=10;
+        int original = x;
+        int reverso = 0;
+
+        while(x != 0) {
+            int ultimoDigito = x % 10;
+            x /= 10;
+            reverso = (reverso * 10) + ultimoDigito;
         }
 
-        int i = 0;
-        int j = tamanho-1;
-        boolean resposta = true;
-        while(j > i) {
-            if(Integer.parseInt(vetor[i]) != Integer.parseInt(vetor[j])) {
-                resposta = false;
-            }
-            i++;
-            j--;
-        }
-        return resposta;
+        return original == reverso;
     }
 }
