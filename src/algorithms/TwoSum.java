@@ -32,6 +32,8 @@ Only one valid answer exists.
  */
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
     public static void main(String[] args) {
@@ -42,20 +44,17 @@ public class TwoSum {
         int[] resultado = solucao.twoSum(input, target);
 
         System.out.println("Resultado: " + Arrays.toString(resultado));
-
     }
 
     public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> mapa = new HashMap<>();
         for(int i = 0; i < nums.length; i++) {
-            for(int j = i+1; j < nums.length; j++) {
-                if(nums[i] + nums[j] == target) {
-                    int[] array = new int[2];
-                    array[0] = i;
-                    array[1] = j;
-                    return array;
-                }
+            int buscado = target - nums[i] ;
+            if(mapa.containsKey(buscado)) {
+                return new int[]{mapa.get(buscado),i};
             }
+            mapa.put(nums[i],i);
         }
-        throw new IllegalArgumentException("Não tem solução");
+        return nums;
     }
 }
