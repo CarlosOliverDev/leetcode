@@ -25,10 +25,14 @@ haystack and needle consist of only lowercase English characters.
 
 public class FindIndexFirstOccurrenceString {
     public static void main(String[] args) {
-
+        FindIndexFirstOccurrenceString f = new FindIndexFirstOccurrenceString();
+        String haystack = "sadbutsad";
+        String needle = "sad";
+        int indice = f.strStr(haystack, needle);
+        System.out.println(indice);
     }
 
     public int strStr(String haystack, String needle) {
-        return 0;
+        return haystack.indexOf(needle);
     }
 }
